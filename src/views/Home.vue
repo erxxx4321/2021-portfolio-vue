@@ -1,331 +1,408 @@
 <template>
-  <div>
-    <div class="home text-xs-center" id="home">
-      <v-container fluid class="ma-0 pa-0">
-        <v-parallax
-          height="700"
-          dark
-          src="https://user-images.githubusercontent.com/29502161/50774755-1c67fb80-1249-11e9-9317-5e568fac468d.jpg"
-        >
-          <v-layout align-center column justify-center class="mt-5">
-            <p class="font-weight-thin mt-2" style="font-size:50px;">I'm</p>
-            <p class="font-weight-light mb-3" style="font-size:50px;">Himshikhar Gayan</p>
-            <v-btn href="#portfolio" depressed medium color="white--text " class="mb-0" fab dark>
-              <v-icon dark>arrow_downward</v-icon>
-            </v-btn>
-          </v-layout>
-        </v-parallax>
-      </v-container>
-    </div>
+	<div>
+		<!-- hero -->
+		<div class="home text-xs-center" id="home">
+			<v-container fluid class="ma-0 pa-0">
+				<v-parallax height="700" src="./hero.jpg">
+					<v-layout
+						align-center
+						column
+						justify-center
+						class="mt-5"
+						dark
+					>
+						<p
+							class="mt-2"
+							:style="{
+								fontSize: '50px',
+								fontWeight: '100',
+								opacity: opacity,
+								transition: '0.3s',
+							}"
+						>
+							I'm
+						</p>
+						<p
+							class="mb-3"
+							:style="{
+								fontSize: '50px',
+								opacity: opacity,
+								transition: '0.3s',
+							}"
+						>
+							Kaori Chin
+						</p>
+						<v-btn
+							href="#portfolio"
+							depressed
+							medium
+							color="white--text blue-grey"
+							class="mb-0"
+							fab
+							:style="{
+								opacity: opacity,
+								marginTop: mt,
+								transition: '0.4s',
+							}"
+						>
+							<v-icon dark>arrow_downward</v-icon>
+						</v-btn>
+					</v-layout>
+				</v-parallax>
+			</v-container>
+		</div>
 
-    <div id="portfolio">
-      <v-layout row wrap class="home text-xs-center mt-5">
-        <v-flex xs12 sm12 lg12 class="mt-3">
-          <p class="font-weight-thin mt-5" style="font-size:40px;">Some of my work</p>
-          <v-divider class="mb-5"></v-divider>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm12 lg12>
-          <p class="font-weight-thin mt-2 ml-4 mt-5" style="font-size:35px;">Android development</p>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg3 ma-5 v-for="android in androidCards" :key="android.name">
-          <v-hover>
-            <v-card class="pa-2" slot-scope="{hover}" :class="`elevation-${hover ? 8 : 2}`">
-              <v-card-title>
-                <div>
-                  <h3 class="headline mb-0">{{android.heading}}</h3>
-                  <div>{{android.content}}</div>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-layout align-center column justify-center>
-                  <v-btn dark v-bind:href="android.link" medium color=" white--text">View</v-btn>
-                </v-layout>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
-
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm12 lg12>
-          <p class="font-weight-thin mt-2 ml-4" style="font-size:35px;">Technical Writing</p>
-        </v-flex>
-        <v-flex
-          xs12
-          sm6
-          md4
-          lg3
-          ma-5
-          v-for="techWriting in techWritingCards"
-          :key="techWriting.heading"
-        >
-          <v-hover>
-            <v-card class="pa-2" slot-scope="{hover}" :class="`elevation-${hover ? 8 : 2}`">
-              <v-card-title>
-                <div>
-                  <h3 class="headline mb-2">{{techWriting.heading}}</h3>
-                  <div>{{techWriting.content}}</div>
-                </div>
-              </v-card-title>
-              <div class="text-center">
-                <v-chip v-for="tag in techWriting.tags" :key="tag" class="ma-2">{{tag}}</v-chip>
-              </div>
-              <v-card-actions>
-                <v-layout align-center column justify-center>
-                  <v-btn v-bind:href="techWriting.link" medium dark class="white--text">Read More</v-btn>
-                </v-layout>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
-
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm12 lg12>
-          <p class="font-weight-thin mt-2 ml-4" style="font-size:35px;">Machine Learning</p>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg3 ma-5 v-for="machine in machineCards" :key="machine.heading">
-          <v-hover>
-            <v-card class="pa-2" slot-scope="{hover}" :class="`elevation-${hover ? 8 : 2}`">
-              <v-card-title>
-                <div>
-                  <h3 class="headline mb-2">{{machine.heading}}</h3>
-                  <div>{{machine.content}}</div>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-layout align-center column justify-center>
-                  <v-btn v-bind:href="machine.link" medium dark class="white--text">View</v-btn>
-                </v-layout>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
-
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm12 lg12>
-          <p class="font-weight-thin mt-2 ml-4" style="font-size:35px;">Blockchain</p>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg3 ma-5 v-for="block in blockchainCards" :key="block.heading">
-          <v-hover>
-            <v-card class="pa-2" slot-scope="{hover}" :class="`elevation-${hover ? 8 : 2}`">
-              <v-card-title>
-                <div>
-                  <h3 class="headline mb-2">{{block.heading}}</h3>
-                  <div>{{block.content}}</div>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-layout align-center column justify-center>
-                  <v-btn v-bind:href="block.link" medium dark class="white--text">View</v-btn>
-                </v-layout>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
-
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm12 lg12>
-          <p class="font-weight-thin mt-2 ml-4" style="font-size:35px;">iOS & watchOS</p>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg3 ma-5 v-for="block in iosCards" :key="block.heading">
-          <v-hover>
-            <v-card class="pa-2" slot-scope="{hover}" :class="`elevation-${hover ? 8 : 2}`">
-              <v-card-title>
-                <div>
-                  <h3 class="headline mb-2">{{block.heading}}</h3>
-                  <div>{{block.content}}</div>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-layout align-center column justify-center>
-                  <v-btn v-bind:href="block.link" medium dark class="white--text">View</v-btn>
-                </v-layout>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
-
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12 sm12 lg12>
-          <p class="font-weight-thin mt-2 ml-4" style="font-size:35px;">Flutter</p>
-        </v-flex>
-        <v-flex xs12 sm6 md4 lg3 ma-5 v-for="block in flutterCards" :key="block.heading">
-          <v-hover>
-            <v-card class="pa-2" slot-scope="{hover}" :class="`elevation-${hover ? 8 : 2}`">
-              <v-card-title>
-                <div>
-                  <h3 class="headline mb-2">{{block.heading}}</h3>
-                  <div>{{block.content}}</div>
-                </div>
-              </v-card-title>
-              <v-card-actions>
-                <v-layout align-center column justify-center>
-                  <v-btn v-bind:href="block.link" medium dark class="white--text">View</v-btn>
-                </v-layout>
-              </v-card-actions>
-            </v-card>
-          </v-hover>
-        </v-flex>
-      </v-layout>
-    </div>
-  </div>
+		<div id="portfolio" class="mt-5">
+			<!-- Side project -->
+			<v-layout row wrap align-center justify-center class="mb-5">
+				<v-flex xs12 sm12 lg12>
+					<p
+						class="font-weight-thin mt-2 ml-4 mt-5"
+						style="font-size:35px;"
+					>
+						Side Projects
+					</p>
+				</v-flex>
+				<v-flex
+					xs12
+					sm6
+					md4
+					lg3
+					ma-3
+					v-for="sp in spCards"
+					:key="sp.name"
+				>
+					<v-card
+						class="pa-2 shadow"
+						data-aos="fade-up"
+						data-aos-once="true"
+					>
+						<v-img v-bind:src="sp.img" height="200px"></v-img>
+						<v-card-title>
+							<div>
+								<h3 class="mb-0">
+									{{ sp.heading }}
+								</h3>
+								<div>{{ sp.content }}</div>
+							</div>
+						</v-card-title>
+						<v-card-actions>
+							<v-layout align-center column justify-center>
+								<v-btn
+									dark
+									v-bind:href="sp.link"
+									medium
+									color="blue-grey white--text"
+									>View</v-btn
+								>
+							</v-layout>
+						</v-card-actions>
+					</v-card>
+				</v-flex>
+			</v-layout>
+			<!-- Technical writing -->
+			<v-layout column class="mb-3">
+				<v-flex xs12 sm12 lg12>
+					<p
+						class="font-weight-thin mt-2 ml-4"
+						style="font-size:35px;"
+					>
+						Technical Writing
+					</p>
+				</v-flex>
+				<v-flex
+					ma-3
+					v-for="techWriting in techWritingCards"
+					:key="techWriting.heading"
+				>
+					<v-card
+						class="pa-2 shadow"
+						data-aos="fade-up-left"
+						data-aos-once="true"
+					>
+						<v-card-title>
+							<div>
+								<h3 class="mb-2">
+									{{ techWriting.heading }}
+								</h3>
+								<div>{{ techWriting.content }}</div>
+							</div>
+						</v-card-title>
+						<div class="d-flex flex-row justify-content-between">
+							<div class="mr-5">
+								<v-chip
+									v-for="tag in techWriting.tags"
+									:key="tag"
+									class="ma-2"
+									>{{ tag }}</v-chip
+								>
+							</div>
+							<v-card-actions>
+								<v-layout row justify-end>
+									<v-btn
+										v-bind:href="techWriting.link"
+										medium
+										class="blue-grey white--text"
+										>Read More</v-btn
+									>
+								</v-layout>
+							</v-card-actions>
+						</div>
+					</v-card>
+				</v-flex>
+			</v-layout>
+			<!-- Photography -->
+			<v-layout row wrap justify-center>
+				<v-flex xs12 sm12 lg12>
+					<p
+						class="font-weight-thin mt-2 ml-4 mt-5 mb-5"
+						style="font-size:35px;"
+					>
+						Photography Works
+					</p>
+				</v-flex>
+				<v-flex
+					xs8
+					sm4
+					md3
+					ma-2
+					v-for="ph in phCards"
+					:key="ph.heading"
+				>
+					<v-hover v-slot="{ hover }">
+						<v-card class="pa-2" :elevation="hover ? 8 : 2">
+							<a :href="ph.link">
+								<v-img
+									v-bind:src="ph.img"
+									height="300px"
+								></v-img>
+							</a>
+						</v-card>
+					</v-hover>
+				</v-flex>
+			</v-layout>
+			<!-- Social -->
+			<v-layout row justify-center ma-5>
+				<ul class="d-flex ma-5">
+					<li v-for="(item, key) in socialIcons" :key="key">
+						<a class="blue-grey--text" :href="item.href">
+							<i :class="item.class"></i>
+						</a>
+					</li>
+				</ul>
+			</v-layout>
+		</div>
+	</div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      techWritingCards: [
-        {
-          heading:
-            "Working with Firebase ML Kit Barcode scanner and Room Database",
-          content:
-            "Extract data from barcode and save the inforamation locally using the Room Persistence Library.",
-          link: "https://eidk.org/Firebase-BarcodeScanning-saving-locally.html",
-          tags: ["ML Kit", "Firebase", "Room Persistance Library", "Kotlin"]
-        },
-        {
-          heading:
-            "Working with Local notification and Firebase push notification",
-          content:
-            "Sending push notification using FCM and also about triggering a local notification.",
-          link:
-            "https://eidk.org/Firebase-push-local-notfications-android-eidk.html",
-          tags: ["Local notification", "Push notification", "FCM", "Kotlin"]
-        },
-        {
-          heading: "Data Visualization using Matplotlib",
-          content:
-            "Data visualization is a key aspect in data analysis which allows us to represent data in a visual format.",
-          link: "https://eidk.org/data-visualization-using-matplotlib.html",
-          tags: ["Matplotlib", "Visualization", "Python"]
-        },
-        {
-          heading: "Neural Network in Pytorch using Google Colab",
-          content:
-            "Building a deep learning model and understanding the building blocks on which that model will be built upon.",
-          link:
-            "https://eidk.org/Neural-Network-in-PyTorch-Using-Google-CoLab.html",
-          tags: ["Pytorch", "Deep Learning", "Google Colab", "Python"]
-        },
-        {
-          heading: "Working with Retrofit in Kotlin using MVVM architecture",
-          content:
-            "Fetching JSON data from an API using Retrofit, Coroutines, Glide and updating the views using LiveData.",
-          link: "https://eidk.org/Working-with-Retorfit-kotlin-eidk.html",
-          tags: ["Coroutines", "LiveData", "Retrofit", "Kotlin"]
-        }
-      ],
-      androidCards: [
-        {
-          heading: "Picfuse",
-          content: "A photo editor for Android.It is lightweight (nearly 3mb).",
-          link:
-            "https://www.amazon.com/UltraVisionStudio-Picfuse-Photo-Editor/dp/B07167RRGM?tag=incepin-20"
-        },
-        {
-          heading: "FilterLibrary",
-          content: "Android image filter library having 16 unique filters.",
-          link: "https://hgayan7.github.io/FilterLibrary/"
-        },
-        {
-          heading: "Code Converter",
-          content:
-            "Android app for conversion of numbers between number systems.",
-          link:
-            "https://play.google.com/store/apps/details?id=com.uvstudio.codeconverter&hl=en"
-        },
-        {
-          heading: "WiFiDirect Data Tranfer",
-          content:
-            "Data transfer from one device to another android device using Wifi P2P.",
-          link: "https://github.com/hgayan7/WiFiDirectDataTranfer"
-        },
-        {
-          heading: "Hackathon App",
-          content:
-            "App made for Smart India Hackathon 2018 .This app uses the Near library for P2P chat over wifi direct.",
-          link: "https://github.com/hgayan7/Hackathon-App"
-        }
-      ],
-      machineCards: [
-        {
-          heading: "Face Recognition",
-          content: "Face recognition system using FaceNet and OpenCV",
-          link: "https://github.com/hgayan7/Face-Recognizer"
-        },
-        {
-          heading: "Review Analysis",
-          content: "The is a RNN(GRU) based model",
-          link: "https://github.com/hgayan7/DL-ML-notebooks/tree/master/NLP_RNN"
-        },
-        {
-          heading: "Custom Object Detection",
-          content:
-            "Detection of custom objects using Tensorflow Object Detection API.",
-          link:
-            "https://github.com/hgayan7/DL-ML-notebooks/tree/master/CustomObjectDetectionTensorflow"
-        },
-        {
-          heading: "Review Analysis ",
-          content:
-            "This model uses Natural Language Processing to make predictions whether an user review is positive or not" +
-            "using Random Forest algorithm.",
-          link:
-            "https://github.com/hgayan7/DL-ML-notebooks/tree/master/NLP_RandomForest"
-        }
-      ],
-      blockchainCards: [
-        {
-          heading: "Land Network",
-          content:
-            "A decentralised Land Title Ownership Dapp through which a land owner can sell his land to a peer without the involvement of government or any middlemen once registered.",
-          link: "https://github.com/hgayan7/EthIndia-Codebase"
-        },
-        {
-          heading: "DonationDapp",
-          content:
-            "This decentralized app allows donors to donate ether to verified NGOs to serve their purpose." +
-            "Register new NGO , Remove fraud NGO(s), Make verified NGOs available for accepting donations.",
-          link: "https://github.com/hgayan7/DonationDapp"
-        },
-        {
-          heading: "Blockchain based voting system",
-          content:
-            "Android app showing the integration of the DApp and its features with android.The DApp is built on top of Ethereum blockchain and is live in Rinkeby.",
-          link:
-            "https://github.com/hgayan7/VoteX---Blockchain-based-voting-system"
-        }
-      ],
-      flutterCards: [
-        {
-          heading: "CloudSpace",
-          content: "Cloud storage provider app made with flutter",
-          link: "https://github.com/hgayan7/CloudSpace"
-        },
-        {
-          heading: "EMPhance",
-          content: "EMPhance - Flutter based employee-employer engagement app",
-          link: "https://github.com/hgayan7/EMPhance"
-        }
-      ],
-      iosCards: [
-        {
-          heading: "watchOS App",
-          content:
-            "Weather app UI and Github Client for watchOS using combine and SwiftUI",
-          link:
-            "https://github.com/hgayan7/iOS-Playground/tree/master/WatchOsTest"
-        }
-      ]
-    };
-  }
+	data() {
+		return {
+			spCards: [
+				{
+					heading: "Hello Currency",
+					img: "https://picsum.photos/id/237/200/300",
+					content: "Currency exchange app built with VueJs...",
+					link: "https://github.com/erxxx4321/HelloCurrency",
+				},
+				{
+					heading: "Daily",
+					img:
+						"https://github.com/erxxx4321/Daily/raw/master/demo.png",
+					content:
+						"A news website which data is from New York Times API and built with ReactJS...",
+					link: "https://github.com/erxxx4321/vue-todo",
+				},
+				{
+					heading: "Todo app",
+					img: "https://picsum.photos/id/239/200/300",
+					content: "Todo app built with VueJS...",
+					link:
+						"https://play.google.com/store/apps/details?id=com.uvstudio.codeconverter&hl=en",
+				},
+				{
+					heading: "Library",
+					img: "https://picsum.photos/id/240/200/300",
+					content:
+						"A simple Library application which can add book and remove book",
+					link: "https://github.com/erxxx4321/library-vanillaJS",
+				},
+				{
+					heading: "PICO table booking",
+					img: "https://picsum.photos/id/241/200/300",
+					content:
+						"A table booking system which is built with Express/node and connect to mysql database",
+					link: "https://github.com/erxxx4321/booktable",
+				},
+			],
+			techWritingCards: [
+				{
+					heading: "耦合性與內聚力",
+					content:
+						"Coupling & Cohesion 是程式設計重要的概念。在 1974 年，一篇被刊登在 IBM Systems Journal的共筆文章 “Structured Design”...",
+					link:
+						"https://medium.com/@erxxx4321/%E8%80%A6%E5%90%88%E6%80%A7%E8%88%87%E5%85%A7%E8%81%9A%E5%8A%9B-c93b4cc93dc6",
+					tags: ["程式設計", "軟體開發", "電腦科學"],
+				},
+				{
+					heading: "作用域是什麼？ 為什麼我們需要作用域？",
+					content:
+						"要知道什麼是作用域之前，我們需要知道為什麼我們會需要作用域，讓我們回到作用域還沒出現的時候...",
+					link:
+						"https://eidk.org/Firebase-push-local-notfications-sp-eidk.html",
+					tags: ["區域作用域", "全域作用域", "Programming"],
+				},
+				{
+					heading: "什麼是 CRUD?",
+					content:
+						"CRUD 是一個英文的首字母縮略字，分別由”CREATE”、”READ”、”UPDATE”、”DELETE”所組成，以電腦程序來說，它是形成一個動態網站必要的操作手段，下圖是其對應到的SQL語法...",
+					link:
+						"https://medium.com/@erxxx4321/%E4%BB%80%E9%BA%BC%E6%98%AF-crud-4bc669ba22b6",
+					tags: ["CRUD", "增刪查改", "電腦程式", "動態網站"],
+				},
+				{
+					heading: "MVC 是什麼？",
+					content:
+						"MVC是一種軟體設計的模式，它將程式切分成三個相互關聯的元件，個別負責不同的工作...",
+					link:
+						"https://medium.com/@erxxx4321/mvc-%E6%98%AF%E4%BB%80%E9%BA%BC-e5fc06554907",
+					tags: ["Mvc Frameworks", "軟體設計", "程式設計"],
+				},
+				{
+					heading:
+						"Working with Retrofit in Kotlin using MVVM architecture",
+					content:
+						"Fetching JSON data from an API using Retrofit, Coroutines, Glide and updating the views using LiveData.",
+					link:
+						"https://eidk.org/Working-with-Retorfit-kotlin-eidk.html",
+					tags: ["Coroutines", "LiveData", "Retrofit", "Kotlin"],
+				},
+			],
+			phCards: [
+				{
+					heading: "Tokyo tower",
+					img:
+						"https://images.unsplash.com/photo-1628925217211-91a5cbd0f7ab?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80",
+					link: "https://unsplash.com/photos/AwYY_Xj9EEE",
+				},
+				{
+					heading: "Naoshima dating",
+					img:
+						"https://images.unsplash.com/photo-1612343281188-d6954aa692fa?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1334&q=80",
+					link: "https://unsplash.com/photos/teYjKGvqkz8",
+				},
+				{
+					heading: "Kobe port",
+					img:
+						"https://images.unsplash.com/photo-1628925217148-4680588ab501?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80",
+					link: "https://unsplash.com/photos/lv2sH0rBwAQ",
+				},
+				{
+					heading: "Osaka Umeda Sky building",
+					img:
+						"https://images.unsplash.com/photo-1628925217319-61e69f7a8361?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1334&q=80",
+					link: "https://unsplash.com/photos/zI_ooiqGjBc",
+				},
+				{
+					heading: "Okayama",
+					img:
+						"https://images.unsplash.com/photo-1612343000933-28befb3f648c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1334&q=80",
+					link: "https://unsplash.com/photos/wOrYW3LchvI",
+				},
+				{
+					heading: "Naoshima sea",
+					img:
+						"https://images.unsplash.com/photo-1612343888441-4528db67502b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80",
+					link: "https://unsplash.com/photos/zhM_xvo0-kg",
+				},
+			],
+			socialIcons: [
+				{
+					class: "fab fa-facebook-f icon",
+					href: "https://www.facebook.com/erxxx4321",
+				},
+				{
+					class: "fab fa-github icon",
+					href: "https://github.com/erxxx4321",
+				},
+				{
+					class: "fab fa-medium-m icon",
+					href: "https://medium.com/@erxxx4321",
+				},
+			],
+			opacity: 0,
+			mt: "100px",
+		};
+	},
+	methods: {
+		loading() {
+			this.opacity = 1;
+			this.mt = "0px";
+		},
+	},
+	mounted() {
+		window.addEventListener("load", this.loading);
+	},
 };
 </script>
+<style>
+.shadow:hover {
+	box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.16);
+	transform: translateY(-5px);
+}
+.social:hover {
+	box-shadow: 5px 5px 4px 0px rgba(0, 0, 0, 0.16);
+}
+.mail {
+	color: #455a64;
+}
+.mail:hover {
+	color: #b0bec5;
+}
+ul li a {
+	width: 80px;
+	height: 80px;
+	background-color: #fff;
+	text-align: center;
+	line-height: 80px;
+	font-size: 35px;
+	margin: 0 10px;
+	display: block;
+	border-radius: 50%;
+	position: relative;
+	overflow: hidden;
+	border: 3px solid #fff;
+	z-index: 1;
+}
+ul li {
+	list-style: none;
+}
+ul li a .icon {
+	position: relative;
+	transition: 0.5s;
+	z-index: 3;
+}
 
+ul li a:hover .icon {
+	color: #fff;
+	transform: rotateY(360deg);
+}
+
+ul li a:before {
+	content: "";
+	position: absolute;
+	top: 100%;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: #607d8b;
+	transition: 0.5s;
+	z-index: 2;
+}
+
+ul li a:hover:before {
+	top: 0;
+	background: #607d8b;
+}
+</style>
