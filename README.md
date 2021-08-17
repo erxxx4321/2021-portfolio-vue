@@ -1,4 +1,4 @@
-# Portfolio-Website - Kaori Chin
+# 2021 Portfolio website built with VueJS
 
 [![demo](demo.png)](https://kaorichin.netlify.app/) <br>
 
